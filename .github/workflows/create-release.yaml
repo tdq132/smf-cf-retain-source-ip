@@ -1,0 +1,32 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Read Version from File
+        id: read_version
+        run: echo ::set-output name=VERSION::$(cat version)
+
+      - name: Zip the directory
+        run: |
+          mkdir -p releases
+          zip -r releases/RetainCfVisitorIp.zip RetainCfVisitorIp
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: releases/RetainCfVisitorIp.zip
+          tag_name: ${{ steps.read_tag_name.outputs.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

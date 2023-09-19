@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+    <id>thomas.dq:RetainCfVisitorIp</id>
+    <version>0.0.1</version>
+
+    <file name="$boarddir/index.php">
+        <operation>
+            <search position="after">// Get everything started up...</search>
+            <add>// Start of mod RetainCfVisitorIp by Thomas Quirke
+if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
+// End of mod RetainCfVisitorIp
+
+</add>
+        </operation>
+    </file>
+    
+</modification>
