@@ -27,6 +27,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: releases/RetainCfVisitorIp.zip
-          tag_name: ${{ steps.read_tag_name.outputs.VERSION }}
+          tag_name: ${{ steps.read_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
